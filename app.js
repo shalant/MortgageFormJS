@@ -59,14 +59,33 @@ function calculateTotalInterestPaid(loanAmount, interestRate, numberMonthlyPayme
     return parseFloat(totalInterestPaid.toFixed(2));
 }
 
+function validate() {
+    let testInterestRate = document.getElementById("interest-rate").value;
+    // If x is Not a Number or less than one or greater than 10
+    let text;
+    if (isNaN(testInterestRate) || testInterestRate < 1 || testInterestRate > 10) {
+      text = "Input not valid";
+    } else if (testInterestRate < 4 ) {
+        text = "This is a fantastic interest rate!"
+    } else if (testInterestRate >= 4 && testInterestRate <= 6) {
+        text = "This is a reasonable interest rate"
+    } else if (testInterestRate > 6) {
+        text = "This is a high interest rate"
+    }
+    document.getElementById("validateInterestRate").innerHTML = text;
+  }
+
 form.onsubmit = (e) => {
     e.preventDefault();
-
+    validate();
     let monthlyPayment = calculateMortgage(loanAmount.value, interestRate.value, lengthOfMortgage.value);
     let totalPayment = calculateTotalPayment(loanAmount.value, interestRate.value, lengthOfMortgage.value);
     let totalInterestPaid = calculateTotalInterestPaid(loanAmount.value, interestRate.value, lengthOfMortgage.value);
 
     document.getElementById("monthlyPayment").innerHTML = `${monthlyPayment}`;
+    document.getElementById("monthlyPayment").classList.add("display-box");
     document.getElementById("totalPayment").innerHTML = `${totalPayment}`;
+    document.getElementById("totalPayment").classList.add("display-box");
     document.getElementById("totalInterestPaid").innerHTML = `${totalInterestPaid}`;
+    document.getElementById("totalInterestPaid").classList.add("display-box");
 }
