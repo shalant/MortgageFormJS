@@ -61,7 +61,6 @@ function calculateTotalInterestPaid(loanAmount, interestRate, numberMonthlyPayme
 
 form.onsubmit = (e) => {
     e.preventDefault();
-    validate();
 
     let monthlyPayment = calculateMortgage(loanAmount.value, interestRate.value, lengthOfMortgage.value);
     let totalPayment = calculateTotalPayment(loanAmount.value, interestRate.value, lengthOfMortgage.value);
